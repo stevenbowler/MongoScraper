@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mongo Scraper</title>
+
+  {{!-- <link rel="stylesheet" type="text/css" href="../../public/assets/css/reset.css"> --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+  <style>
+    html,
+    body,
+    main,
+    .jumbotron {
+      background-color: black;
+    }
+
+    a:link {
+      color: black;
+    }
+
+    /* visited link */
+    a:visited {
+      color: green;
+    }
+
+    /* mouse over link */
+    a:hover {
+      color: red;
+    }
+
+    /* selected link */
+    a:active {
+      color: blue;
+    }
+
+    tr {
+      border-radius: 15px;
+      border: 3px solid black;
+      margin-top: 3px;
+      width: 100%;
+      color: black;
+    }
+
+    .noteDiv {
+      border: 1px solid white;
+      margin-top: 3px;
+      padding: 5px;
+    }
+
+
+    tr:nth-child(even) {
+      background-color: darkgray;
+    }
+
+    tr:nth-child(odd) {
+      background-color: lightgray;
+    }
+
+    tr:hover {
+      background-color: lightgreen;
+    }
+  </style>
+
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+
+  <!-- Font Awesome Glyphicons -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+
+</head>
+
+<body style="background-color: black; color:white;">
+  <div id=navheader>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark text-white bg-dark">
+      <a class="navbar-brand" href="https://github.com/stevenbowler">Mongo Scraper</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Scrape
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/scrape/history">History</a>
+              <a class="dropdown-item" href="/scrape/fiction">Fiction</a>
+              <a class="dropdown-item" href="/scrape/fantasy">Fantasy</a>
+              <a class="dropdown-item" href="/scrape/non-fiction">Non-fiction</a>
+              <a class="dropdown-item" href="/scrape/classics">Classics</a>
+              <a class="dropdown-item" href="/scrape/science-fiction">Science-fiction</a>
+              <a class="dropdown-item" href="/scrape/science">Science</a>
+              <a class="dropdown-item" href="/scrape/humor">Humor</a>
+              <a class="dropdown-item" href="/scrape/literature">Literature</a>
+              <a class="dropdown-item" href="/scrape/psychology">Psychology</a>
+              <a class="dropdown-item" href="/scrape/politics">Politics</a>
+              <a class="dropdown-item" href="/scrape/health">Health</a>
+              <a class="dropdown-item" href="/scrape/dystopia">Dystopia</a>
+              <a class="dropdown-item" href="/scrape/medical">Medical</a>
+              <a class="dropdown-item" href="/scrape/popular-science">Popular-science</a>
+              <a class="dropdown-item" href="/scrape/skepticism">Skepticism</a>
+              <div class="dropdown-divider"></div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/" id="viewSaved">View Saved</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" role="button"
+              href="https://drive.google.com/file/d/1LUDGtekKEj_6oiXhJrVoSqt1gZtwY8Tg/view">App
+              Tutorial</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Documentation
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="https://stevenbowler.github.io/MongoScraper/docs/index.html">Home JS
+                Docs</a>
+              <a class="dropdown-item" href="https://stevenbowler.github.io/MongoScraper/docs/global.html">Globals</a>
+              <div class="dropdown-divider"></div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/stevenbowler/MongoScraper" tabindex="-1"
+              aria-disabled="true">Github
+              Repo</a>
+          </li>
+        </ul>
+        <form id="googleSearchForm" class="form-inline my-2 my-lg-0" target="blank"
+          action="https://github.com/stevenbowler/MongoScraper/search?">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search Repository" aria-label="Search"
+            id="googlesearch" name="q">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="searchButton">Search</button>
+
+        </form>
+      </div>
+    </nav>
+  </div>
+
+
+
+
+
+  {{{ body }}}
+  <script src="../assets/js/scraper.js"></script>
+
+</body>
+
+</html>

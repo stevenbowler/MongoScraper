@@ -1,0 +1,43 @@
+<h1>Mongo Book Scraper</h1>
+
+<div class="container-lg animated zoomInLeft delay-0s" style="background-color: black;">
+  <div class="row">
+    <div class="col-12 col-md col-lg">
+      <h2 style="color:lightyellow;">These Are Your Saved Books:</h2>
+      <table>
+        <tr>
+          <th>Delete</th>
+          <th>See Notes</th>
+          <th>Title (click Title to go to book)</th>
+        </tr>
+        {{#each book}}
+        <tr id="rowid{{this._id}}">
+          <td><button deletebookid="{{this._id}}" class="deleteBook btn btn-outline-danger">Delete</button></td>
+          <td><button seenotesid="{{this._id}}" class="seeNotes btn btn-outline-primary">Notes</button></td>
+          <td><a id="link{{this._id}}" href="{{this.link}}"><strong style="color: black;">{{this.title}}</strong></a>
+          </td>
+        </tr>
+        {{/each}}
+      </table>
+    </div>
+    <div class="col-12 col-md col-lg">
+      <h2 style="color:lightyellow;">Click <strong style="color:blue;">Notes</strong> see notes below:</h2>
+      {{!-- <label for="titleInput">Book Title Notes Under Review:</label> --}}
+      <input style="width:100%; background-color:black; color:white; border:none;" id="titleInput" type="text"
+        placeholder="Click blue Notes button on left column"></input><br>
+      <form>
+        {{!-- <label for="noteTitleInput">Note Title:</label> --}}
+        <input style="width:100%;" id="noteTitleInput" type="text"
+          placeholder="Enter a note title including your name too!"></input><br>
+        {{!-- <label for="bodyInput">Note:</label> --}}
+        <textarea style="width:100%;" id="bodyInput" type="text"
+          placeholder="Enter note text here then Submit Note"></textarea>
+        <button class="createNote btn btn-outline-primary" type="submit" id="createNote">Submit Note</button>
+      </form>
+      <div id="notes">
+      </div>
+    </div>
+
+  </div>
+
+</div>

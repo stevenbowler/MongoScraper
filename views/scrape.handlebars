@@ -1,0 +1,25 @@
+<h1>Mongo Book Scraper</h1>
+
+<div class="container-lg animated zoomInLeft delay-0s" style="background-color: black;">
+  <div class="row">
+    <div class="col-12 col-md col-lg">
+      <h2 style="color:orange;">Scraped Books, add your favorites to saved books list:</h2>
+      <table>
+        <tr>
+          <th>Item </th>
+          <th></th>
+          <th> Title (Click to go to book)</th>
+        </tr>
+        {{#each book}}
+        <tr>
+          <td>{{this._id}}</td>
+          <td><button bookid="{{this._id}}" class="saveBook btn btn-outline-primary">Save</button></td>
+          <td><a id="book{{this._id}}" href="{{this.link}}"><strong style="color: black">{{this.title}}</strong></a>
+          </td>
+        </tr>
+        {{/each}}
+      </table>
+    </div>
+
+  </div>
+</div>
