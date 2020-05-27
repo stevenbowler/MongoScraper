@@ -1,8 +1,18 @@
+//@ts-check
+/**
+ * @module
+ * @requires mongoose
+ */
 const mongoose = require('mongoose');
 
+/**
+ * @name Schema
+ */
 var Schema = mongoose.Schema;
 
-
+/**
+ * @namespace
+ */
 const BookSchema = new Schema({
     title: {
         type: String

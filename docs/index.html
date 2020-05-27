@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: MongoScraper</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">MongoScraper</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>MongoScraper</h1>
+<p>Scrape Media Sources for Desired Content and Store in MongoDB Atlas</p>
+<h3>Overview</h3>
+<p>This is a media scraper app that enables the user to search for the most popular books based on the most popular topics found on <a href="https://www.goodreads.com/">GoodReads</a>.  Users can search, save and recall their favorite books, as well as add and delete discussion notes to each of the saved books.
+This program was developed by Steven Bowler for the purpose of gaining experience developing a full-stack app employing best-practices for executing the <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">Model-View-Control</a> (MVC) software development pattern.  Additionally, the project provides this programmer the opportunity develop skills in creating and deploying a functional full-stack app on <a href="https://www.heroku.com">Heroku</a>, integrating <a href="https://www.npmjs.com/package/express-handlebars">Express-Handlebars</a>, <a href="https://www.npmjs.com/package/expressjs">ExpressJS</a>,<a href="https://www.npmjs.com/package/mongoose">Mongoose</a>, <a href="https://www.npmjs.com/package/cheerio">Cheerio</a>, and <a href="https://www.npmjs.com/package/axios">Axios</a>. <em><em><code>Enjoy</code></em></em>.</p>
+<h3>User Documentation</h3>
+<p>First, watch this video: <em><em><a href="https://drive.google.com/file/d/1LUDGtekKEj_6oiXhJrVoSqt1gZtwY8Tg/view">MongoScraper</a></em></em>.</p>
+<p>Then, read the instructions and see the clips below</p>
+<p>To use the app click <a href="https://protected-hollows-73924.herokuapp.com/">MongoScraper</a></p>
+<ol>
+<li>User onclick event triggers one of six actions: Scrape, View Saved Books, Delete Saved Book, Add Saved Book, Create Note, Delete Note.</li>
+<li>&quot;Scrape&quot; dropdown from navbar initiates /scrape/topic route based on choice of topic.</li>
+<li>User can chose to &quot;Save&quot; a scraped book to the saved list collection in MongoDB Atlas.</li>
+<li>User can chose to &quot;View Saved&quot; books from the saved list collection in MongoDB Atlas.</li>
+<li>User can chose to &quot;Delete&quot; a saved book from the saved list collection in MongoDB Atlas.</li>
+<li>User can chose to view &quot;Notes&quot; for a saved book from the saved note collection in MongoDB Atlas.</li>
+<li>User can chose to view &quot;Submit&quot; a new note associated with a saved book in MongoDB Atlas.</li>
+<li>User can chose to view &quot;Delete&quot; a note associated with a saved book in MongoDB Atlas.</li>
+</ol>
+<h3>Program Documentation</h3>
+<p>Program is documented in <a href="https://stevenbowler.github.io/MongoScraper/docs/index.html">JSDOC</a></p>
+<p>Deploy app thru <a href="https://www.heroku.com">Heroku</a> with MongoDB Atlas.</p>
+<p>Program requires setting Heroku Environment variable process.env.JAWSDB_URL from Heroku CLI</p>
+<pre class="prettyprint source"><code>heroku config:set DB_CONNECTION=your_mongodb_atlas_url
+</code></pre>
+<p>App executes the MVC software pattern in the following manner:</p>
+<ol>
+<li>Initiate <em><em><code>server.js</code></em></em></li>
+<li>Serve <em><em><code>index.handlebars</code></em></em> with current saved books collection from MongoDB Atlas.</li>
+<li>Everything is event driven from events in <a href="https://stevenbowler.github.io/MongoScraper/docs/module-public_assets_js_scraper.html">scraper module</a>.</li>
+</ol>
+<p>Main module documentation and references can be accessed <a href="https://stevenbowler.github.io/sequelizedBurger/docs/index.html">here</a>.  Global scope variables can be accessed <a href="https://stevenbowler.github.io/sequelizedBurger/docs/global.html">here</a>,</p>
+<p>Directory structure is as follows:</p>
+<pre class="prettyprint source"><code>.
+│ 
+├── controller
+│   └── routes.js
+│
+├── db
+│   ├── schema.sql
+│   └── seeds.sql
+│
+├── docs
+│
+├── models
+│   └── index.js
+│         └── Book.js
+│         └── Note.js
+│ 
+├── node_modules
+│ 
+├── package.json
+│ 
+├── jsdoc.json
+│
+├── public
+│   └── assets
+│       ├── css
+│       │   └── reset.css
+│       └── img
+│       │   └── none
+│       └── js
+│           └── scraper.js
+│
+├── server.js
+│
+└── views
+    ├── index.handlebars
+    ├── scrape.handlebars
+    └── layouts
+        └── main.handlebars
+</code></pre></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">MongoScraper</a></h2><h3>Modules</h3><ul><li><a href="module-controller_routes.html">controller/routes</a></li><li><a href="module-models_Book.html">models/Book</a></li><li><a href="module-models_Note.html">models/Note</a></li><li><a href="module-public_assets_js_scraper.html">public/assets/js/scraper</a></li><li><a href="module-server.html">server</a></li></ul><h3>Externals</h3><ul><li><a href="external-exphbs.html">exphbs</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-models_Book-BookSchema.html">BookSchema</a></li><li><a href="module-models_Note-NoteSchema.html">NoteSchema</a></li></ul><h3>Events</h3><ul><li><a href="module-public_assets_js_scraper.html#.event:deleteBook">deleteBook</a></li><li><a href="module-public_assets_js_scraper.html#.event:deleteNote">deleteNote</a></li><li><a href="module-public_assets_js_scraper.html#.event:saveBook">saveBook</a></li><li><a href="module-public_assets_js_scraper.html#.event:seeNotes">seeNotes</a></li><li><a href="module-public_assets_js_scraper.html#.event:updateNote">updateNote</a></li><li><a href="module-public_assets_js_scraper.html#event:createNote">createNote</a></li><li><a href="module-public_assets_js_scraper.html#event:scrape">scrape</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed May 27 2020 16:35:24 GMT-0500 (Central Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

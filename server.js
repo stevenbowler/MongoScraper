@@ -1,3 +1,13 @@
+//@ts-check
+/**
+ * @module
+ * @requires dotenv
+ * @requires express
+ * @requires express-handlbars
+ * @requires mongoose
+ * @requires module:/controller/routes
+ * @todo need to resolve running Mongo Atlas in Heroku
+ */
 
 // Dependencies
 var express = require("express");
@@ -53,15 +63,21 @@ app.use(routes);
 
 // connect to Mongo DB
 //  mongodb+srv://sbowler:sbowler@cluster0-z0lp4.gcp.mongodb.net/test?retryWrites=true&w=majority
-var databaseUrl = "mongodb+srv://sbowler:sbowler@cluster0-z0lp4.gcp.mongodb.net/bootcamp?retryWrites=true&w=majority"
+// var databaseUrl = "mongodb+srv://sbowler:sbowler@cluster0-z0lp4.gcp.mongodb.net/bootcamp?retryWrites=true&w=majority";  //works
+var databaseUrl = process.env.DB_CONNECTION;
 mongoose.connect(
-    databaseUrl,  // pull from .env file in react folder
+    process.env.DB_CONNECTION,  // pull from .env
     { useNewUrlParser: true, useUnifiedTopology: true },
     () => { console.log('connected to Mongo DB') }
 );
 
 
-// Set the app to listen on port 3000
-app.listen(3000, function () {
-    console.log("App running on port 3000!");
-});
+// // Set the app to listen on port 3000
+// app.listen(3000, function () {
+//     console.log("App running on port 3000!");
+// });
+
+
+// listen to PORT, default 3000
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Listening on port: ${port}`));

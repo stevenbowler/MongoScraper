@@ -1,10 +1,20 @@
+//@ts-check
+/**
+ * @module
+ * @requires mongoose
+ */
 var mongoose = require("mongoose");
 
-// Save a reference to the Schema constructor
+/** 
+ * Save a reference to the Schema constructor
+ * @name Schema
+*/
 var Schema = mongoose.Schema;
 
-// Using the Schema constructor, create a new NoteSchema object
-// This is similar to a Sequelize model
+/**
+ * Using the Schema constructor, create a new NoteSchema object.  This is similar to a Sequelize model.
+ * @namespace
+*/
 var NoteSchema = new Schema({
     // `title` is of type String
     title: String,
