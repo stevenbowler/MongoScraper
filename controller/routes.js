@@ -191,6 +191,7 @@ router.get("/all", async function (req, res) {
 });
 
 
+var thisArray;
 
 /**
  * Get notes associated with a book and return notesArray
@@ -200,52 +201,43 @@ router.get("/all", async function (req, res) {
  * @returns {object} notesArray
  */
 const getNotesArray = async (id) => {
-    var thisArray;
-    try {
-        // var thisArray =
-        await Book.findOne({ _id: id })
-            // ..and populate all of the notes associated with it
-            .populate("note")
-            .then(function (bookResponse) {
-                var notesArray = bookResponse.notes;
-                console.log("notesArray: ", notesArray);
-                Note.find({ _id: { $in: notesArray } })
-                    .then(function (notesArrayResponse) {
-                        var hbsObject = {
-                            notes: notesArrayResponse
-                        };
+    // try {
+    // var thisArray =
+    Book.findOne({ _id: id })
+        // ..and populate all of the notes associated with it
+        .populate("note")
+        .then(function (bookResponse) {
+            var notesArray = bookResponse.notes;
+            console.log("notesArray: ", notesArray);
+            Note.find({ _id: { $in: notesArray } })
+                .then(function (notesArrayResponse) {
+                    console.log("notesArrayResponse: ", notesArrayResponse);
+                    thisArray = notesArrayResponse;
+                    // return notesArrayResponse;
+                })
+                .catch(function (err) {
+                    return err;
+                    // If we were able to successfully find an Article with the given id, send it back to the client
+                })
+                .finally(function () {
+                    console.log("thisArray not defined?: ", thisArray);
+                    // return thisArray;
+                })
+                ;
 
-                        // console.log("hbsObject: ", hbsObject);
-                        console.log("notesArrayResponse: ", notesArrayResponse);
-                        // res.render("index", hbsObject);  // doesn't work
-                        // res.render("index", JSON.parse(JSON.stringify(hbsObject)));  // doesn't work
-                        // res.json(notesArrayResponse);
-                        thisArray = notesArrayResponse;
-                        // return notesArrayResponse;
-                    })
-                    .catch(function (err) {
-                        // If an error occurred, send it to the client
-                        return err;
-                        // If we were able to successfully find an Article with the given id, send it back to the client
-                    })
-                    .finally(function () {
-                        console.log("thisArray not defined?: ", thisArray);
-                        return thisArray;
-                    })
-                    ;
-
-            })
-            .catch(function (err) {
-                // If an error occurred, send it to the client
-                console.log(err);
-                return err;
-            })
-            ;
-        console.log("thisArray: ", thisArray);
-    }
-    catch (err) {
-        console.log(err);
-    }
+        })
+        .catch(function (err) {
+            // If an error occurred, send it to the client
+            console.log(err);
+            return err;
+        })
+        ;
+    //     console.log("thisArray: ", thisArray);
+    //     return thisArray
+    // }
+    // catch (err) {
+    //     console.log(err);
+    // }
 }
 
 
@@ -259,14 +251,10 @@ const getNotesArray = async (id) => {
  */
 router.get("/seeNotes/:id", async function (req, res) {
     var id = req.params.id;
-    // try {
-    //     const response = await getNotesArray(id);
-    //     console.log(".get response: ", response);
+    // var response = getNotesArray(id).then(function(){
+    //     console.log("getNotesArray", response);
     //     res.json(response);
-    // }
-    // catch (err) {
-    //     console.log(err);
-    // }
+    // });
     Book.findOne({ _id: req.params.id })
         // ..and populate all of the notes associated with it
         .populate("note")
@@ -275,22 +263,12 @@ router.get("/seeNotes/:id", async function (req, res) {
             console.log("notesArray: ", notesArray);
             Note.find({ _id: { $in: notesArray } })
                 .then(function (notesArrayResponse) {
-                    var hbsObject = {
-                        notes: notesArrayResponse
-                    };
-
-                    console.log("hbsObject: ", hbsObject);
-                    console.log("hbsObject: ", notesArrayResponse);
-                    // res.render("index", hbsObject);  // doesn't work
-                    // res.render("index", JSON.parse(JSON.stringify(hbsObject)));  // doesn't work
+                    console.log("notesArrayResponse: ", notesArrayResponse);
                     res.json(notesArrayResponse);
                 })
                 .catch(function (err) {
-                    // If an error occurred, send it to the client
                     res.json(err);
-                    // If we were able to successfully find an Article with the given id, send it back to the client
                 });
-
         })
         .catch(function (err) {
             // If an error occurred, send it to the client
@@ -341,14 +319,6 @@ router.post("/createNote/:id", async function (req, res) {
             console.log("notesArray: ", notesArray);
             Note.find({ _id: { $in: notesArray } })
                 .then(function (notesArrayResponse) {
-                    var hbsObject = {
-                        notes: notesArrayResponse
-                    };
-
-                    console.log("hbsObject: ", hbsObject);
-                    console.log("hbsObject: ", notesArrayResponse);
-                    // res.render("index", hbsObject);  // doesn't work
-                    // res.render("index", JSON.parse(JSON.stringify(hbsObject)));  // doesn't work
                     res.json(notesArrayResponse);
                 })
                 .catch(function (err) {
@@ -356,15 +326,12 @@ router.post("/createNote/:id", async function (req, res) {
                     res.json(err);
                     // If we were able to successfully find an Article with the given id, send it back to the client
                 });
-
         })
         .catch(function (err) {
             // If an error occurred, send it to the client
             console.log(err);
             res.json(err);
         });
-
-
 });
 
 
@@ -401,14 +368,6 @@ router.delete("/deleteNote/:id/:bookId", async function (req, res) {
             console.log("notesArray: ", notesArray);
             Note.find({ _id: { $in: notesArray } })
                 .then(function (notesArrayResponse) {
-                    var hbsObject = {
-                        notes: notesArrayResponse
-                    };
-
-                    console.log("hbsObject: ", hbsObject);
-                    console.log("hbsObject: ", notesArrayResponse);
-                    // res.render("index", hbsObject);  // doesn't work
-                    // res.render("index", JSON.parse(JSON.stringify(hbsObject)));  // doesn't work
                     res.json(notesArrayResponse);
                 })
                 .catch(function (err) {
@@ -416,15 +375,12 @@ router.delete("/deleteNote/:id/:bookId", async function (req, res) {
                     res.json(err);
                     // If we were able to successfully find an Article with the given id, send it back to the client
                 });
-
         })
         .catch(function (err) {
             // If an error occurred, send it to the client
             console.log(err);
             res.json(err);
         });
-
-
 });
 
 

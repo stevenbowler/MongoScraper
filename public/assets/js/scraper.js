@@ -130,7 +130,7 @@ $(".seeNotes").on("click", function (event) {
 
 
 /**
- * Called from .seeNotes event to load any notes returned from notes collection for this book
+ * Called from {@link .seeNotes}, {@link .deleteNote} or {@link .createNote} event to load notes collection for this book
  * Takes notesArrayResponse and loads to notes div on index.handlebars
  * @function
  * @name buildNoteDiv
