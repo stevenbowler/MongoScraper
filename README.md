@@ -53,10 +53,6 @@ Directory structure is as follows:
 ├── controller
 │   └── routes.js
 │
-├── db
-│   ├── schema.sql
-│   └── seeds.sql
-│
 ├── docs
 │
 ├── models
