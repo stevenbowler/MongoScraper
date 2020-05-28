@@ -14,25 +14,28 @@ First, watch this video: _*[MongoScraper](https://drive.google.com/file/d/1pzUBS
 Then, read the instructions and see the clips below
 
 To use the app click [MongoScraper](https://cryptic-brook-08326.herokuapp.com/)
-1. User onclick event triggers one of six actions: Scrape, View Saved Books, Delete Saved Book, Add Saved Book, Create Note, Delete Note.
-2. "Scrape" dropdown from navbar initiates /scrape/topic route based on choice of topic.
-3. User can chose to "Save" a scraped book to the saved list collection in MongoDB Atlas.
-4. User can chose to "View Saved" books from the saved list collection in MongoDB Atlas.
-5. User can chose to "Delete" a saved book from the saved list collection in MongoDB Atlas.
-6. User can chose to view "Notes" for a saved book from the saved note collection in MongoDB Atlas.
-7. User can chose to view "Submit" a new note associated with a saved book in MongoDB Atlas.
-8. User can chose to view "Delete" a note associated with a saved book in MongoDB Atlas.
+
+User can trigger one of seven actions: 
+
+1. _*`Scrape`*_ dropdown from navbar initiates /scrape/topic route based on choice of topic.
+2. _*`Save`*_ button to save a scraped book to the saved list collection.    
+3. _*`View Saved`*_ from navbar to view books from the saved list collection.
+4. _*`Delete`*_ button to delete a saved book from the saved list collection.
+5. _*`Notes`*_ button to view notes associated with a saved book.
+6. _*`Submit`*_ button to add a new note associated with a saved book.
+7. _*`Delete`*_ button to delete a note associated with a saved book.
 
 
 ### Program Documentation
-Program is documented in [JSDOC](https://stevenbowler.github.io/MongoScraper/docs/index.html)
+[Click here](https://stevenbowler.github.io/MongoScraper/docs/index.html) to see full program documentation in [JSDOC](https://www.npmjs.com/package/dotenv).
 
 Deploy app thru [Heroku](https://www.heroku.com) with MongoDB Atlas.  
 
-Program requires setting Heroku Environment variable process.env.JAWSDB_URL from Heroku CLI
+Program requires setting Heroku Environment variable process.env.DB_CONNECTION for connection to Mongo DB Atlas in Production.  Recommend use [dotenv](https://www.npmjs.com/package/dotenv) package and in project root directory `.env` file should have this: 
 ````
-heroku config:set DB_CONNECTION=your_mongodb_atlas_url
+DB_CONNECTION=your_mongo_db_access_URL
 ````
+
 
 App executes the MVC software pattern in the following manner:
 1. Initiate _*`server.js`*_
