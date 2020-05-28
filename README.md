@@ -37,16 +37,12 @@ DB_CONNECTION=your_mongo_db_access_URL
 ````
 
 
-App executes the MVC software pattern in the following manner:
-1. Initiate _*`server.js`*_
-2. Serve _*`index.handlebars`*_ with current saved books collection from MongoDB Atlas.
+App is initiated in the following manner:
+1. `main` entry point in `package.json` is  _*`server.js`*_.
+2. `"/"` route serves _*`index.handlebars`*_ including saved `books` collection from MongoDB Atlas.
 3. Everything is event driven from events in [scraper module](https://stevenbowler.github.io/MongoScraper/docs/module-public_assets_js_scraper.html).
 
-
-
-Main module documentation and references can be accessed [here](https://stevenbowler.github.io/sequelizedBurger/docs/index.html).  Global scope variables can be accessed [here](https://stevenbowler.github.io/sequelizedBurger/docs/global.html), 
-
-
+App executes the MVC software pattern where the program components are in the corresponding `Models`, `Views`, and `Controller` sub-directories.  
 
 Directory structure is as follows:
 
@@ -87,3 +83,5 @@ Directory structure is as follows:
         └── main.handlebars
 ```
 
+
+Main module documentation and references can be accessed [here](https://stevenbowler.github.io/MongoScraper/docs/index.html).  Global scope variables can be accessed [here](https://stevenbowler.github.io/MongoScraper/docs/global.html), 
