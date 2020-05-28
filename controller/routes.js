@@ -16,24 +16,12 @@ var mongoose = require("mongoose");
 var cheerio = require("cheerio");
 var axios = require("axios");
 
-
-// // Handlebars
-// var exphbs = require("express-handlebars");
-
-// // set display engine to handlbars starting at main.handlebars
-// app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-// app.set("view engine", "handlebars");
-
-
 // Initialize Express
 var router = express();
-
 
 // Database configuration
 // Save the URL of our database as well as the name of our collection
 const { Book, Note } = require('../models/');
-
-
 
 
 
@@ -198,7 +186,7 @@ var thisArray;
  * @function
  * @name getNotesArray
  * @param {string} id 
- * @returns {object} notesArray
+ * @returns notesArray
  */
 const getNotesArray = async (id) => {
     // try {
@@ -232,12 +220,7 @@ const getNotesArray = async (id) => {
             return err;
         })
         ;
-    //     console.log("thisArray: ", thisArray);
-    //     return thisArray
-    // }
-    // catch (err) {
-    //     console.log(err);
-    // }
+
 }
 
 
